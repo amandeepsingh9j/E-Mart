@@ -1,0 +1,87 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+<title>Cart Page| E-MaRt</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <h5 class="background text-center text-light p-1 mt-2">Cart</h5>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped">
+            
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Size</th>
+                <th>Color</th>
+                <th>Prize</th>
+                
+                <th>Quantity</th>
+                <th>Increase Quantity</th>
+                <th>Decrease Quantity</th>
+                <th>Total</th>
+                <th>MainCategory</th>
+                <th>SubCategory</th>
+                <th>Brand</th>
+                <th>Delete</th>
+            </tr>
+
+            {% for i in cart %}
+            <tr>
+
+                <td><img src="{{i.pic}}" width="100px" height="80px" alt="{{i.name}}" title="{{i.name}}"></td>
+                <td>{{i.name}}</td>
+                <td>{{i.size}}</td>
+                <td>{{i.color}}</td>
+                <td>&#8377; {{i.price}}</td>
+                <td>{{i.qty}}</td>
+                <td><a href="/update-cart/{{i.pid}}/dec" class="text-center"><i class="bi bi-dash fs-4"></i></a></td>
+                <td><a href="/update-cart/{{i.pid}}/inc" class="text-center"><i class="bi bi-plus fs-4"></i></a></td>
+
+                <td>&#8377; {{i.total}}</td>
+                <td>{{i.maincategory}}</td>
+                <td>{{i.subcategory}}</td>
+                <td>{{i.brand}}</td>
+                <td><a href="/delete-cart/{{i.pid}}" class="text-center"><i class="bi bi-trash fs-5 text-center"></i></a></td>
+            
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-6 col-12">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th>Total</th>
+                    <td>&#8377; {{total}}</td>
+                </tr>
+
+                <tr>
+                    <th>Shipping</th>
+                    <td>&#8377; {{shipping}}</td>
+                </tr>
+                
+                <tr>
+                    <th>Final</th>
+                    <td>&#8377; {{final}}</td>
+                </tr>
+                {% if final %}
+                <tr>
+                    
+                    <th colspan="2"><a href="/checkout" class="background w-100 btn text-center text-light">Checkout</a></th>
+                
+                </tr>
+                {% endif %}
+
+            </table>
+        </div>
+
+    </div>
+</div>
+
+{% endblock content %}

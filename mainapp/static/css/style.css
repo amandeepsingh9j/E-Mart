@@ -1,0 +1,48 @@
+.background{
+    background-color: rgb(138, 43, 226);
+}
+
+.btn:hover{
+    background-color: blue !important;
+}
+
+.banner-section{
+    position:relative;
+}
+.banner-btn{
+
+    width:200px;
+    position:absolute;
+    left:30px;
+    padding:10px;
+}
+.banner-btn:hover{
+
+    box-shadow: 0 0 10px black;
+
+}
+.backg{
+    /* background-image: linear-gradient(to right,  rgb(255, 96, 96), rgb(98, 137, 203)); */
+    /* background-color: rgb(155, 26, 26); */
+    /* background-image: linear-gradient(to right,  rgb(162, 24, 24), rgba(42, 90, 174, 0)); */
+}
+
+
+
+.card{
+    border-radius: 10px;
+}
+.card-title{
+    height:50px;
+}
+#banner-btn1{
+    top:20%;
+}
+
+#banner-btn2{
+    top:40%;
+}
+
+#banner-btn3{
+    top:60%;
+}

@@ -1,0 +1,249 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load mytags %}
+{% block title %}
+
+<title>{{users.name}} | E-MaRt</title>
+
+{% endblock %}
+
+{% block content %}
+
+<!-- <div class="container-fluid">
+    <div class="row">
+        <div class="mb-2 col-md-6 col-12">
+            {% if user.pic %}
+            <img src="{{user.pic1.url}}" alt="">
+            {% else %}
+            <img src="../static/images/noimage.png" alt="">
+            {% endif %}
+        </div>
+
+        <div class="col-md-6 col-12">
+            <h5 class="background text-center text-light">Buyer Profile Section</h5>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover">
+
+                    <tr>
+                        <th>Name</th>
+                        <td>{{user.name}}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Username</th>
+                        <td>{{user.username}}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Email</th>
+                        <td>{{user.email}}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Phone</th>
+                        <td>{{user.phone}}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Address</th>
+                        <td>{{user.address}}</td>
+                    </tr>
+
+                    <tr>
+                        <td><a colspan="2" href="/updateprofile" class="background btn w-100">Update Profile</a></td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<div class="container-fluid mt-2">
+    <div class="row">
+        <div class="mb-2 col-md-6 col-12">
+            {% if users.pic %}
+            <img src="{{users.pic.url}}" width="100%" height="500px" alt="">
+            {% else %}
+            <img src="{% static 'images/noimage.png' %}" width="100%" height="500px" alt="">
+            {% endif %}
+        </div>
+        <div class="col-md-6 col-12">
+            <h5 class="background text-center text-light p-1">Buyer Profile Section</h5>
+            <table class="table table-striped table-hover table-bordered">
+                <tr>
+                    <th>Full Name:</th>
+                    <td>{{users.name}}</td>
+                </tr>
+
+                <tr>
+                    <th>User Name:</th>
+                    <td>{{users.username}}</td>
+                </tr>
+
+                <tr>
+                    <th>Email:</th>
+                    <td>{{users.email}}</td>
+                </tr>
+
+                <tr>
+                    <th>Phone:</th>
+                    <td>{{users.phone}}</td>
+                </tr>
+
+                <tr>
+                    <th>House or Building</th>
+                    <td>{{users.address}}</td>
+                </tr>
+
+
+                <tr>
+                    <td colspan="2"><a href="/updatepage"
+                            class="w-100 background btn mybtn btn-sm text-light">Update</a></td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+
+    <h5 class="background text-center text-light p-1">Wishlist Section</h5>
+    <table class="table table-striped table-hover table-bordered">
+        <tr>
+            <th>Product Image</th>
+            <th>Product Name</th>
+            <th>Buyer Name</th>
+            <th>Maincategory</th>
+            <th>Subcategory</th>
+            <th>Brand</th>
+            <th>Size</th>
+            <th>Color</th>
+            <th>Price</th>
+            <th></th>
+            <th></th>
+
+
+        </tr>
+
+        {% for i in wishlist %}
+        <tr>
+            <td><img src="{{i.product.pic1.url}}" width="100px" height="70px" alt=""></td>
+
+            <td>{{i.product.name}}</td>
+            <td>{{i.user.name}}</td>
+            <td>{{i.product.maincategory}}</td>
+            <td>{{i.product.subcategory}}</td>
+            <td>{{i.product.brand}}</td>
+            <td>{{i.product.size}}</td>
+            <td>{{i.product.color}}</td>
+            <td>{{i.product.finalprice}}</td>
+            <td><a href="/singleproduct/{{i.product.id}}"><i class="bi bi-cart-plus-fill fs-5"></i></a></td>
+            <td><a href="/delete-wishlist/{{i.product.id}}"><i class="bi bi-trash fs-5"></i></a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+<h5 class="background text-center text-light">Order History Section</h5>
+<div class="row">
+    {% for item in order %}
+    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+        <div class="table-responsive">
+
+            <table class="table table-hover table-bordered table-striped">
+
+                <tr>
+                    <th>Checkout ID</th>
+                    <td>{{item.id}}</td>
+
+                </tr>
+
+                <tr>
+                    <th>Payment Mode</th>
+                    <td>{{item.paymentmode|paymentmode}}</td>
+
+                </tr>
+
+                <tr>
+                    <th>Payment Status</th>
+                    <td>{{item.paymentstatus|paymentstatus}}</td>
+
+                </tr>
+
+                <tr>
+                    <th>Order Status</th>
+                    <td>{{item.orderstatus|orderstatus}}</td>
+
+                </tr>
+
+                <tr>
+                    <th>Total</th>
+                    <td>&#8377; {{item.total}}</td>
+
+                </tr>
+
+                <tr>
+                    <th>Shipping</th>
+                    <td>&#8377; {{item.shipping}}</td>
+
+                </tr>
+
+                <tr>
+                    <th>Final</th>
+                    <td>&#8377; {{item.final}}</td>
+
+                </tr>
+                {% if item.rppid %}
+                <tr>
+                    <th>Razor Pay ID</th>
+                    <td>&#8377; {{item.rppid}}</td>
+
+                </tr>
+                {% endif %}
+            </table>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-9 col-md-8 col-sm-6 col-12">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped">
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>MainCategory</th>
+                    <th>SubCategory</th>
+                    <th>Brand</th>
+                    <th>Color</th>
+                    <th>Size</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+
+                </tr>
+
+                {% for i in item.id|checkoutProduct %}
+                <tr>
+                    <td><img src="{{i.pic}}" width="80px" height="60px" class="rounded" alt=""></td>
+                    <td>{{i.name}}</td>
+                    <td>{{i.maincategory}}</td>
+                    <td>{{i.subcategory}}</td>
+                    <td>{{i.brand}}</td>
+                    <td>{{i.color}}</td>
+                    <td>{{i.size}}</td>
+                    <td>&#8377; {{i.price}}</td>
+                    <td>{{i.qty}}</td>
+                    <td>&#8377; {{i.total}}</td>
+
+                </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+        
+    </div>
+    <hr style="border:5px solid grey">
+        {% endfor %}
+</div>
+
+{% endblock content %}

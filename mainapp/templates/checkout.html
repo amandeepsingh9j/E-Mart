@@ -1,0 +1,120 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+<title>Checkout Page| E-MaRt</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid mt-2">
+    <div class="row">
+        <div class="col-md-6 col-12">
+            <h5 class="background text-center text-light">Billing Details</h5>
+            <table class="table table-bordered table-hover table-responsive table-striped">
+                <tr>
+                    <th>Name</th>
+                    <td>{{user.name}}</td>
+                </tr>
+
+                <tr>
+                    <th>Username</th>
+                    <td>{{user.username}}</td>
+                </tr>
+
+                <tr>
+                    <th>Email</th>
+                    <td>{{user.email}}</td>
+                </tr>
+
+                <tr>
+                    <th>Phone</th>
+                    <td>{{user.phone}}</td>
+                </tr>
+
+                <tr>
+                    <th>Address</th>
+                    <td>{{user.address}}</td>
+                </tr>
+
+                <tr>
+                    <td colspan="2"><a href="/updatepage" class="background btn text-center text-light w-100">Update</a>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+        <div class="col-md-6 col-12">
+            <h5 class="background text-center text-light">Cart Details</h5>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped">
+
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Size</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        
+
+                    </tr>
+                    {% for i in cart %}
+                    <tr>
+                        <td><img src="{{i.pic}}" alt="" width="100px" height="80px"></td>
+                        <td>{{i.name}}</td>
+                        <td>{{i.size}}</td>
+                        <td>&#8377; {{i.price}}</td>
+                        <td>{{i.qty}}</td>
+                        <td>&#8377; {{i.total}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+
+            </div>
+            <table class="mt-2 table-bordered table table-hover table-striped table-responsive justify-content-evenly ">
+                <tr>
+                    <th>Total Amount</th>
+                    <td>&#8377; {{total}}</td>
+        
+                </tr>
+        
+                <tr>
+                    <th>Shipping Amount</th>
+                    <td>&#8377; {{shipping}}</td>
+        
+                </tr>
+        
+                <tr>
+                    <th>Final Amount</th>
+                    <td>&#8377; {{final}}</td>
+        
+                </tr>
+        
+        
+                <form action="/order/" method="post">
+                    {% csrf_token %}
+                    <tr>
+                        <th>Payment Mode</th>
+                        <td>
+                            <select name="mode" class="form-select">
+                                <option value="COD">COD</option>
+                                <option value="Net banking">Net Banking/Card/UPI</option>
+                            </select>
+                        </td>
+                    </tr>
+        
+                    <tr>
+                        <th colspan="2"><button type="Submit" class="btn background text-center text-light w-100 btn-sm">Place Order</button></th>
+                    </tr>
+                </form>
+            </table>
+        </div>
+    </div>
+        
+    
+
+
+</div>
+
+{% endblock content %}

@@ -1,0 +1,72 @@
+{% extends 'index.html' %}
+
+    {% block title %}
+    <title>SignUp Page</title>
+    {% endblock %}
+
+    {% block content %}
+    <div class="container-fluid ">
+        <div class="row my-2">
+
+            <div class="col-md-2 col-1"></div>
+            <div class="col-md-8 col-10 ">
+                <h5 class="background text-center text-light p-2 mb-2 mt-2">SignUp Section</h5>
+                
+                {% for i in messages %}
+                <div class="alert alert-danger alert-dismissible fade show text-center p-4" role="alert">
+                    {{i}}
+
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+
+
+                <form method="post">
+
+                    {% csrf_token %}
+                    
+                    <div class="row">
+                        <div class="col-md-6 col-12">
+                          <label class="form-label">Full Name</label>
+                          <input type="text" class="form-control"  name="name" placeholder="Enter Your Fullname" >
+                        </div>
+    
+                        <div class="col-md-6 col-12">
+                            <label class="form-label">User name</label>
+                            <input type="text" class="form-control"  name="username" placeholder="Enter Your Username" >
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-12">
+                            <label  class="form-label">Email Address</label>
+                            <input type="email" class="form-control"  name="email" placeholder="Enter Your Email Address" >
+                        </div>
+    
+                        <div class="col-md-6 col-12">
+                            <label for="exampleInputEmail1" class="form-label">Phone Number</label>
+                            <input type="number" class="form-control"  name="phone" placeholder="Enter Your Phone number" >
+                        </div>
+                    </div>
+    
+                        <div class="m-2">
+                            <label for="exampleInputEmail1" class="form-label">Password</label>
+                            <input type="password" class="form-control"  name="password" placeholder="Enter Your Password" >
+                        </div>
+    
+                        <div class="m-2">
+                            <label for="exampleInputEmail1" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control"  name="cpassword" placeholder="Enter Your Confirm Password" >
+                        </div>
+    
+                        <button type="submit" class="btn background text-center text-light w-100 btn-sm mybtn">Sign Up</button>
+                      </form>
+
+                      <a href="/login/" class="text-decoration-none"> Already User? Login To Your Account </a>
+                    </div> 
+                    <div class="col-md-2 col-1"></div>
+
+
+                </div>
+            </div>
+        
+        {% endblock content %}

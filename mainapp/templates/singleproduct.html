@@ -1,0 +1,117 @@
+{% extends 'index.html' %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}
+    <title>{{detail.name}} | E-MaRt</title>
+    {% endblock title %}
+</head>
+
+<body>
+    {% block content %}
+    <div class="container-fluid">
+        <div class="row">
+           
+            <div class="col-md-6 col-12">
+                <div id="carouselExampleIndicators" class="carousel slide">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                            class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{{detail.pic1.url}}" height="500px" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{detail.pic2.url}}" height="500px" class="d-block w-100" alt="...">
+                        </div>
+
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-12">
+
+
+                <h5 class="background p-2 m-2 text-center text-light">{{detail.name}}</h5>
+                <div class="table-responsive">
+                    <table class="table">
+
+                        <tr>
+                            <th>MainCategory</th>
+                            <td>{{detail.maincategory}}</td>
+                        </tr>
+
+                        <tr>
+                            <th>SubCategory</th>
+                            <td>{{detail.subcategory}}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Brand</th>
+                            <td>{{detail.brand}}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Color</th>
+                            <td>{{detail.color}}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Size</th>
+                            <td>{{detail.size}}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Price</th>
+                            <td>&#8377; <del>{{detail.baseprice}}</del><sub>{{detail.finalprice}}</sub></td>
+                        </tr>
+
+                        <tr>
+                            <th>Discount</th>
+                            <td>{{detail.discount}}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Stock</th>
+                            <td>{{detail.stock}}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Description</th>
+                            <td>{{detail.description}}</td>
+                        </tr>
+
+                        <tr>
+                            <th><a href="/add-to-cart/{{detail.id}}"
+                                    class="btn background text-center text-light mybtn w-100">Add To Cart</a></th>
+                            <td><a href="/add-to-wishlist/{{detail.id}}"
+                                    class="btn background text-center text-light mybtn w-50">Add To Wishlist</a></td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+          
+        </div>
+    </div>
+    {% endblock content %}
+
+</body>
+
+</html>
